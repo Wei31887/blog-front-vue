@@ -17,7 +17,7 @@
             </div>
             <Markdown :source="blog.content" />
             <div class="blog-comment">
-                
+                <Comment></Comment>
             </div>
         </div>
         <div class="blog-outline">
@@ -33,6 +33,7 @@ import { useRoute, useRouter } from 'vue-router';
 import Markdown from 'vue3-markdown-it';
 import BlogOutline from '@/components/blog/BlogOutline';
 import PageHeader from '@/components/page_header/PageHeader';
+import Comment from '@/components/blog/Comment.vue';
 
 export default {
     name: "BlogContentView",
@@ -40,6 +41,7 @@ export default {
         Markdown,
         BlogOutline, 
         PageHeader,
+        Comment,
     },
     setup() {
         const router = useRouter()
@@ -91,6 +93,10 @@ div.blog-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+div.blog-comment {
+    width: 100%;
 }
 
 div.blog-outline {
