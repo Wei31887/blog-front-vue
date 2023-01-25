@@ -20,7 +20,8 @@
             v-model:page-size="pageSize"
             layout="prev, pager, next"
             :total="currentTotal"
-            @current-change="handleCurrentChange"/>
+            @current-change="handleCurrentChange"
+        />
     </div>
 </template>
 
@@ -98,8 +99,11 @@ export default {
 
         //mounted
         onMounted(() => {
-            blogList.typeId = route.params.type === undefined || NaN ? 0 : parseInt(route.params.type)
-            // console.log('onMount:', blogList.typeId)
+            if (route.params.type === undefined) {
+                blogList.typeId = 0
+            } else {
+                blogList.typeId = parseInt(store.getters.getBlogTypes[route.params.type])
+            }
             loadingBlog()
         })
 

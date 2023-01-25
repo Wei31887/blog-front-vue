@@ -56,6 +56,6 @@ export default {
 
 <style>
 .el-breadcrumb {
-    padding: 1rem;
+    padding: 1.5rem;
 }
 </style>

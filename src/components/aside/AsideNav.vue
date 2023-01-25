@@ -2,20 +2,27 @@
     <div class="aside-view">
         <div class="aside-header">
             <div class="profile-image">
-                <el-avatar :size="100" :src="profileImage" />
+                <el-avatar 
+                style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); " 
+                :size="100" 
+                :src="profileImage" />
             </div>
             <div class="profile-sign">
                 <h3>{{ bloggerName }}</h3>
             </div>
+            <div class="sign">
+                <p>{{ sign }}</p>
+            </div>
         </div>
         <div class="aisde-content-view">
-            <div class="sign">
-                <!-- <p>{{ sign }}</p> -->
-            </div>
             <div class="category">
                 <el-scrollbar height="400px">
                     <ul class="menu-link">
-                        <li><router-link class="menu-link" :to="{name: 'HomePage'}" >Home</router-link></li>
+                        <li class="menu-link-home">
+                            <router-link class="menu-link" :to="{name: 'HomePage'}">
+                                Home
+                            </router-link>
+                        </li>
                         <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
                             <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
                                 {{ key }} <el-icon><ArrowRightBold /></el-icon>
@@ -30,7 +37,6 @@
 
 <script>
 import { BASE_API } from '@/config/config';
-import { GetBlogger } from '@/api/blogger';
 import { ElNotification } from 'element-plus';
 import { onMounted, reactive, toRefs, ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -51,37 +57,33 @@ export default{
 
         // methods
         const loadingBlogger = () => {
-            GetBlogger().then(res => {
+            store.dispatch('loadingBlogger').then(res => {
                 if (res.data.code === 0) {
-                    blogger.profileImage = BASE_API + res.data.data.img
-                    blogger.nickName = res.data.data.nickname
-                    blogger.sign = res.data.data.sign
-                    blogger.bloggerName = blogger.nickName + "'s blog" 
+                    blogger.profileImage = BASE_API + store.getters.getBlogger.img
+                    blogger.sign = store.getters.getBlogger.sign
+                    blogger.bloggerName = store.getters.getBlogger.nickname + "'s blog" 
                 } else {
                     ElNotification({
                         title: 'Error',
                         type: 'error',
-                        message: res.data.msg
-                    })
+                        message: "Can't find blogger. " + res.data.msg
+                    }) 
                 }
-            }).catch(e => {
-                console.log(e)
-            })
+            }).catch(e => {console.log(e)})
         }
+
         const loadingBlogType = () => {
-            store.dispatch('loadingBlogType').then( res => {
+            store.dispatch('loadingBlogType').then(res => {
                 if (res.data.code === 0) {
                     BlogTypeList.value = store.getters.getBlogTypes
                 } else {
                     ElNotification({
                         title: 'Error',
                         type: 'error',
-                        message: res.data.msg
+                        message: "Can't find blog list. " + res.data.msg
                     })
                 }
-            }).catch( e => {
-                console.log(e)
-            })
+            }).catch(e => {console.log(e)})    
         }
 
         // mounted
@@ -107,8 +109,9 @@ div.aside-view {
     /* box-shadow: 2px 0px 2px 0px rgba(150, 150, 150, 0.2), 2px 0px 2px 0px rgba(150, 150, 150, 0.1); */
     
 }
+
 div.aside-header {
-    margin: 1rem;
+    margin: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -127,16 +130,16 @@ ul.menu-link {
     padding: 0.5rem;
 }
 
+
 a.menu-link {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     text-decoration: none;
     margin: 0 0 0.4rem 0;
     padding: 0.5rem;
     font-size: 1rem;
     font-weight: bold;
-    color: rgb(94, 94, 94);
+    color: rgb(72, 72, 72);
     line-height: 1.25;
     border-radius: 6px;
 }
@@ -154,6 +157,10 @@ a.menu-link:focus {
     background-color:rgb(220, 220, 220);
     color:rgb(125, 125, 125);
     font-weight: bold;
+}
+
+li.menu-link-home {
+    text-align: center;
 }
 
 </style>

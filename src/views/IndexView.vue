@@ -39,7 +39,7 @@ export default {
     AsideNav,
     HeaderView,
     FooterView
-  },
+  }
 }
 </script>
 
@@ -80,7 +80,4 @@ footer.footer {
   width: 100%;
 }
 
-div.content {
-  padding: 1rem;
-}
 </style>

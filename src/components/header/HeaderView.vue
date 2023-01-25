@@ -1,7 +1,7 @@
 <template>
     <div class="header-view">
         <div class="logo">
-            logo
+            <router-link :to="{name: 'HomePage'}"><h3>WeiTim</h3></router-link>
         </div>
         <div class="icon">
             <img id="link-icon" src="https://img.icons8.com/ios-glyphs/60/null/linkedin-circled--v1.png"/>
@@ -12,19 +12,16 @@
   
 
 <script>
+
 export default{
     name: "HeaderView",
-    setup() {
-        return {
-
-        }
-    }
 }
 </script>
 
 <style scoped>
 div.header-view {
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     display: flex;
     justify-content: space-between;
     background-color:   rgb(255, 255, 255);
@@ -40,6 +37,12 @@ div.icon {
 #link-icon {
     width: 30px;
     height: 30px;
+}
+
+
+a {
+    /* padding: 0.5rem; */
+    text-decoration: none;
 }
 
 
