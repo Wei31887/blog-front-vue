@@ -1,19 +1,36 @@
 <template>
     <Page-Header></Page-Header>
-    <div class="blog-list-view" v-for="(item, index) in blogs" 
-        :key="index" @click="handleClick(item)">
-        <el-card class="blogs" shadow="always" :body-style="{ padding: '0px' }" >
-            <div class="pic">
-            </div>
-            <div class="blog-info">
-                <div class="blog-title">
-                    <h1>{{ item.title }}</h1>
+
+    <el-timeline>
+        <el-timeline-item 
+        v-for="(item, index) in blogs" 
+        :key="index"
+        :timestamp="item.add_time" 
+        center
+        placement="top"
+        >
+        <div class="blog-list-view" @click="handleClick(item)">
+            <el-card class="blogs" shadow="always" :body-style="{ padding: '0px' }" >
+                <div class="pic">
                 </div>
-                <span>click: {{ item.click_hit }}</span>
-                <span>create time: {{ item.add_time }}</span>
-            </div>
-        </el-card>
-    </div>
+                <div class="blog-info">
+                    <div class="blog-title">
+                        <h1>{{ item.title }}</h1>
+                    </div>
+                    <div class="blog-info-detail">
+                        <span class="info-detail">
+                            <el-icon><View /></el-icon> Click: {{ item.click_hit }}
+                        </span>
+                        <span class="info-detail">
+                            <el-icon><CollectionTag /></el-icon> Tags: {{}}
+                        </span>
+                    </div>
+                </div>
+            </el-card>
+        </div>
+        </el-timeline-item>
+    </el-timeline>
+
     <div class="page-nav">
         <el-pagination
             v-model:current-page="currentPage"
@@ -122,9 +139,9 @@ export default {
 
 <style scoped>
 div.blog-list-view{
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 2%;
+    /* padding-left: 2rem; */
+    padding-right: 2rem;
+    padding-top: 1rem;
 }
 
 div.page-nav{
@@ -136,14 +153,14 @@ div.page-nav{
 }
 
 .el-card.blogs {
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-
 }
 
 .el-card.blogs:hover {
     cursor: pointer;
+    border: 1px solid rgb(182, 182, 182);
 }
 
 div.blog-info {
@@ -153,6 +170,20 @@ div.blog-info {
     align-items: flex-start;
     font-size: smaller;
     padding: 1rem;
+}
+
+div.blog-title {
+}
+
+div.blog-info-detail {
+    display: flex;
+    align-items: center;
+}
+
+span.info-detail {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 </style>

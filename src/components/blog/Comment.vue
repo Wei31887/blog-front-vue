@@ -8,7 +8,6 @@
         :reactionsEnabled="reactionsEnabled"
         :emitMetadata="emitMetadata"
         :inputPosition="inputPosition"
-        :loading="loading"
     >
     </Giscus>
 </template>
@@ -33,7 +32,6 @@ export default {
             reactionsEnabled: "1",
             emitMetadata: "0",
             inputPosition: "top",
-            loading: "lazy"
         })
         return {
             ...toRefs(giscusSetting)

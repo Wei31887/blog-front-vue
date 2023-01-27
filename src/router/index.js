@@ -8,15 +8,20 @@ const routes = [
     component: HomeView,
     children: [
       {
-        path: 'home/:type?',
+        path: 'Home/:type?',
         name: 'HomePage',
         component: () => import("@/views/home/HomePageView"),
       },
       {
-        path: 'home/:type/:id',
+        path: 'Home/:type/:id',
         name: 'BlogContent',
         component: () => import("@/views/blog/BlogContentView")
-      }
+      },
+      {
+        path: 'About',
+        name: 'AboutPage',
+        component: () => import("@/views/about/AboutView")
+      },
     ]
   },
   {

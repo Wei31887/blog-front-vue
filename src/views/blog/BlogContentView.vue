@@ -17,10 +17,9 @@
                         </ul>
                     </div>
                 </el-page-header>
-                <el-divider />
             </div>
-            <div class="blog-content-context">
-                <Markdown :source="Content" />
+            <div class="blog-content-context" ref="markdown_content">
+                <MarkdownContent v-if="Content" :source="Content"></MarkdownContent>
             </div>
             <div class="blog-prev-next">
                 <div class="blog-prev-next-view blog-prev-next-view-hover" id="prev" @click="goPrev">
@@ -41,35 +40,36 @@
                 </div>
             </div>
             <div class="blog-comment">
-                <Comment></Comment>
+                <!-- <Comment></Comment> -->
+                <Comment2 :comments="BlogCommentList"></Comment2>
             </div>
         </div>
-        <div class="blog-outline">
-            <BlogOutline></BlogOutline>
-        </div>
+        
     </div>    
 </template>
 
 <script>
 import { BlogContent } from '@/api/blog'
-import { onMounted, reactive, toRefs, watch } from 'vue';
+import { onMounted, reactive, toRefs, watch, ref, provide } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Markdown from 'vue3-markdown-it';
-import BlogOutline from '@/components/blog/BlogOutline';
+import MarkdownContent from '@/components/blog/MarkdownContent';
+
 import PageHeader from '@/components/page_header/PageHeader';
-import Comment from '@/components/blog/Comment';
+// import Comment from '@/components/blog/Comment';
+import Comment2 from '@/components/blog/Comment2.vue';
 import store from '@/store';
 
 export default {
     name: "BlogContentView",
     components: {
-        Markdown,
-        BlogOutline, 
+        MarkdownContent,
+      
         PageHeader,
-        Comment,
+        Comment2,
     },
 
     setup() {
+        const markdown_content = ref()
         const router = useRouter()
         const route = useRoute()
 
@@ -84,15 +84,16 @@ export default {
             Content: '',
             AddTime: '',
             UpdateTime: '',
+            CommentList: {},
             Click: 0,
-            SeriesBlogTypeId: 0
         })
 
+        const BlogCommentList = ref()
+
         // methods 
-        const loadingContent = (blogId, typeId) => {
+        const loadingContent = (blog_id) => {
             BlogContent({
-                id: blogId,
-                type_id: typeId
+                id: blog_id,
             }).then(res => {
                 if (res.data.code === 0) {
                     let temp = res.data.data['blog']
@@ -102,6 +103,8 @@ export default {
                     BlogState.AddTime = temp.add_time
                     BlogState.UpdateTime = temp.update_time
                     BlogState.Click = temp.click_hit
+
+                    BlogCommentList.value = res.data.data['comments']
                     PrevNextBlog.nextBlog = res.data.data['next']
                     PrevNextBlog.prevBlog = res.data.data['prev']
                 } 
@@ -109,18 +112,21 @@ export default {
                 console.log(e)
             })
         }
+
         const goback = () => {
             router.push({name: 'HomePage', params: {type: route.params.type}})
         }
 
         const goPrev = () => {
-            router.push({
-                name: 'BlogContent', 
-                params: {
-                    type: route.params.type, 
-                    id: PrevNextBlog.prevBlog.id
-                }
-            })
+            if (PrevNextBlog.prevBlog) {
+                router.push({
+                    name: 'BlogContent', 
+                    params: {
+                        type: Object.keys(store.getters.getBlogTypes).find(key => store.getters.getBlogTypes[key] === PrevNextBlog.prevBlog.typeId), 
+                        id: PrevNextBlog.prevBlog.id
+                    }
+                })
+            }
         }
 
         const goNext = () => {
@@ -128,18 +134,22 @@ export default {
                 router.push({
                     name: 'BlogContent', 
                     params: {
-                        type: route.params.type, id: PrevNextBlog.nextBlog.id
+                        type: Object.keys(store.getters.getBlogTypes).find(key => store.getters.getBlogTypes[key] === PrevNextBlog.nextBlog.typeId), 
+                        id: PrevNextBlog.nextBlog.id
                     }
                 })
             }
         }
+
+        // provide
+        provide('loadingContent', loadingContent)
         
         // watch
         watch(route, (to) => {
             let toId = parseInt(to.params.id)
             if (toId != BlogState.Id) {
                 BlogState.Id = toId
-                loadingContent(BlogState.Id, BlogState.SeriesBlogTypeId)   
+                loadingContent(BlogState.Id)   
             }
         })
 
@@ -162,14 +172,16 @@ export default {
 
         // mounted
         onMounted(() => {
-            let blogId = parseInt(route.params.id)
-            BlogState.SeriesBlogTypeId = parseInt(store.getters.getBlogTypes[route.params.type])
-            loadingContent(blogId, BlogState.SeriesBlogTypeId)
+            BlogState.Id = parseInt(route.params.id)
+            loadingContent(BlogState.Id)
         })
 
         return {
+            markdown_content,
             ...toRefs(BlogState),
             ...toRefs(PrevNextBlog),
+            loadingContent,
+            BlogCommentList,
             goback,
             goPrev,
             goNext
@@ -249,14 +261,7 @@ div.blog-comment {
     bottom: 0;
 }
 
-div.blog-outline {
-    border-left: solid 1px rgb(211, 211, 211);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    position: sticky;
-    right: 0;
-}
+
 
 ul {
     list-style: none;
