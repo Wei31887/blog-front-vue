@@ -27,7 +27,8 @@ div.header-view {
     display: flex;
     justify-content: space-between;
     background-color:   rgb(255, 255, 255);
-    box-shadow: 0 1px 1px 0 rgba(150, 150, 150, 0.2), 0 3px 3px 0 rgba(150, 150, 150, 0.1);
+    /* box-shadow: 0 1px 1px 0 rgba(150, 150, 150, 0.2), 0 3px 3px 0 rgba(150, 150, 150, 0.1); */
+    border-bottom: 1px solid var(--border-color);
 }
 
 div.icon {

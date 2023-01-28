@@ -6,6 +6,12 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-  'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    '微软雅黑', Arial, sans-serif;
+    --background-color: white;
+    --aside-color: rgb(255, 255, 255);
+    --div-color:  rgb(255, 255, 255);
+    --border-color: rgb(227, 227, 227);
+    --hover-color: rgb(230, 232, 233);
+    --footer-color:  rgb(230, 236, 237);
 }

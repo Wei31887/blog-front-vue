@@ -3,11 +3,11 @@
 
     <el-timeline>
         <el-timeline-item 
-        v-for="(item, index) in blogs" 
-        :key="index"
-        :timestamp="item.add_time" 
-        center
-        placement="top"
+            v-for="(item, index) in blogs" 
+            :key="index"
+            :timestamp="item.add_time" 
+            hollow="true"
+            placement="top"
         >
         <div class="blog-list-view" @click="handleClick(item)">
             <el-card class="blogs" shadow="always" :body-style="{ padding: '0px' }" >
@@ -160,7 +160,7 @@ div.page-nav{
 
 .el-card.blogs:hover {
     cursor: pointer;
-    border: 1px solid rgb(182, 182, 182);
+    border: 1px solid var(--border-color);
 }
 
 div.blog-info {

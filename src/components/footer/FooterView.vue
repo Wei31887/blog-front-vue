@@ -23,8 +23,8 @@ setup() {
 
 <style scoped>
 div.footer {
-    background-color: rgb(47, 65, 68);
-    color: white;
+    background-color: var(--footer-color);
+    /* color: white; */
     display: flex;
     align-items: center;
     justify-content: center;

@@ -10,26 +10,26 @@
             <div class="profile-sign">
                 <h3>{{ bloggerName }}</h3>
             </div>
-            <div class="sign">
+            <!-- <div class="sign">
                 <p>{{ sign }}</p>
-            </div>
+            </div> -->
         </div>
         <div class="aisde-content-view">
             <div class="category">
-                <el-scrollbar height="400px">
                     <ul class="menu-link">
                         <li class="menu-link-home">
                             <router-link class="menu-link" :to="{name: 'HomePage'}">
                                 Home
                             </router-link>
                         </li>
-                        <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
-                            <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
-                                {{ key }} <el-icon><ArrowRightBold /></el-icon>
-                            </router-link>
-                        </li>
+                        <el-scrollbar height="300px">
+                            <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
+                                <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
+                                    {{ key }} <el-icon><ArrowRightBold /></el-icon>
+                                </router-link>
+                            </li>
+                        </el-scrollbar>
                     </ul>
-                </el-scrollbar> 
             </div>
         </div>
     </div>
@@ -104,19 +104,22 @@ export default{
 <style scoped>
 
 div.aside-view {
-    padding: 1rem;
-    background-color: rgb(233, 237, 242);
-    /* box-shadow: 2px 0px 2px 0px rgba(150, 150, 150, 0.2), 2px 0px 2px 0px rgba(150, 150, 150, 0.1); */
-    
+    /* padding: 1rem; */
+    background-color: var(--aside-color);
+    /* box-shadow: 2px 0px 2px 0px rgba(150, 150, 150, 0.2), 2px 0px 2px 0px rgba(150, 150, 150, 0.1);
+    border-radius: 5px; */
+    border-right: 1px solid var(--border-color);
 }
 
 div.aside-header {
-    margin: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid 1px rgb(193, 197, 203);
+    border-bottom: 1px solid var(--border-color);
 }
 div.aside-content-view {
     position: relative;
@@ -135,26 +138,26 @@ a.menu-link {
     display: flex;
     justify-content: space-between;
     text-decoration: none;
-    margin: 0 0 0.4rem 0;
-    padding: 0.5rem;
+    margin: 0 0rem 0.5rem 0rem;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
     font-size: 1rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: rgb(72, 72, 72);
     line-height: 1.25;
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 a.menu-link:hover {
-    background-color: rgb(220, 220, 220);
+    background-color: var( --hover-color);
 }
 
 a.menu-link:active {
-    background-color:rgb(220, 220, 220);
+    background-color: var( --hover-color);
     color:rgb(125, 125, 125);
     font-weight: bold;
 }
 a.menu-link:focus {
-    background-color:rgb(220, 220, 220);
+    background-color: var( --hover-color);
     color:rgb(125, 125, 125);
     font-weight: bold;
 }

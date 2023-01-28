@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">
+  <div class="container">
     <el-row>
       <el-col :span="5">
         <!-- aside -->
@@ -18,11 +18,11 @@
               <router-view></router-view>
           </div>
         </main>
+        <!-- footer -->
+        <footer class="footer">
+          <footer-view></footer-view>
+        </footer>
       </el-col>
-      <!-- footer -->
-      <footer class="footer">
-        <footer-view></footer-view>
-      </footer>
     </el-row>
   </div>
 </template>
@@ -44,13 +44,13 @@ export default {
 </script>
 
 <style>
-/* div.home-container {
+div.container {
   position: relative;
-} */
+  background-color: var(--background-color);
+}
 
 aside.aside {
   z-index: 2;
-  background-color: white;
   height: 100vh;
   position: sticky;
   top: 0px;
@@ -58,16 +58,15 @@ aside.aside {
 
 main.main-container {
   z-index: 1;
-  background-color: rgb(246, 246, 246);
   min-height: 100vh;
   position: relative;
+  background-color: var(--div-color);
   /* padding-bottom: 3rem; */
 }
 
 header.header{
   z-index: 4;
   position: relative;
-  background-color: rgb(255, 255, 255);
   position: sticky;
   top: 0px;
 
