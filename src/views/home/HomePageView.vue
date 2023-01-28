@@ -172,8 +172,8 @@ div.blog-info {
     padding: 1rem;
 }
 
-div.blog-title {
-}
+/* div.blog-title {
+} */
 
 div.blog-info-detail {
     display: flex;
