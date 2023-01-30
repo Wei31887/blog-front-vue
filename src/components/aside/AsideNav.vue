@@ -3,29 +3,36 @@
         <div class="aside-header">
             <div class="profile-image">
                 <el-avatar 
-                style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); " 
                 :size="100" 
                 :src="profileImage" />
             </div>
             <div class="profile-sign">
                 <h3>{{ bloggerName }}</h3>
             </div>
-            <!-- <div class="sign">
-                <p>{{ sign }}</p>
-            </div> -->
+            <div class="sign">
+                <!-- <p>{{ sign }}</p>
+                 -->
+                <img id="link-icon" src="https://img.icons8.com/ios-glyphs/60/null/linkedin-circled--v1.png"/>
+                <img id="link-icon" src="https://img.icons8.com/material-rounded/48/null/github.png"/>
+            </div>
         </div>
         <div class="aisde-content-view">
             <div class="category">
                     <ul class="menu-link">
-                        <li class="menu-link-home">
-                            <router-link class="menu-link" :to="{name: 'HomePage'}">
-                                Home
-                            </router-link>
-                        </li>
                         <el-scrollbar height="300px">
+                            <li class="menu-link-home">
+                                <router-link class="menu-link" :to="{name: 'HomePage'}">
+                                    Home
+                                </router-link>
+                            </li>
                             <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
                                 <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
                                     {{ key }} <el-icon><ArrowRightBold /></el-icon>
+                                </router-link>
+                            </li>
+                            <li class="menu-link">
+                                <router-link class="menu-link" :to="{name: 'TagPage'}">
+                                    Tags
                                 </router-link>
                             </li>
                         </el-scrollbar>
@@ -88,6 +95,7 @@ export default{
 
         // mounted
         onMounted(() => {
+            console.log(route.path)
             loadingBlogger()  
             loadingBlogType()
         })
@@ -106,11 +114,15 @@ export default{
 div.aside-view {
     /* padding: 1rem; */
     background-color: var(--aside-color);
-    /* box-shadow: 2px 0px 2px 0px rgba(150, 150, 150, 0.2), 2px 0px 2px 0px rgba(150, 150, 150, 0.1);
-    border-radius: 5px; */
+    /* /* box-shadow: 2px 0px 2px 0px rgba(150, 150, 150, 0.2), 2px 0px 2px 0px rgba(150, 150, 150, 0.1); */
+    height: 100%;
     border-right: 1px solid var(--border-color);
 }
 
+#link-icon {
+    width: 30px;
+    height: 30px;
+}
 div.aside-header {
     margin-left: 1rem;
     margin-right: 1rem;

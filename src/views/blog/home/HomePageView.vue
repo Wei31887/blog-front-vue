@@ -1,11 +1,4 @@
 <template>
-    <!-- <el-timeline>
-        <el-timeline-item 
-            v-for="(item, index) in blogs" 
-            :key="index"
-            :timestamp="item.add_time" 
-            placement="top"
-        > -->
         <div class="homepage-view">
             <div class="blog-list-view" 
                 v-for="(item, index) in blogs" 
@@ -109,6 +102,7 @@ export default {
         }
 
         const handleClick = (item) => {
+            console.log(router)
             router.push({
                 name: 'BlogContent', 
                 params: { 
@@ -150,6 +144,10 @@ div.blog-list-view{
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;
+    /* min-width: 50%; */
+    /* display: flex;
+    flex-wrap: wrap; */
+    
 }
 
 div.page-nav{
@@ -161,7 +159,7 @@ div.page-nav{
 }
 
 .el-card.blogs {
-    border-radius: 5px;
+    /* border-radius: 0px; */
     display: flex;
     flex-direction: column;
 }

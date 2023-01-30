@@ -4,57 +4,102 @@
             <router-link :to="{name: 'HomePage'}">
                 <!-- <img src="@/assets/logo.jpeg" alt="logo" id="logo">
                  -->
-                 <h3>WeiTim</h3>
+                 <h3>
+                    WeiTim
+                 </h3>
             </router-link>
+            
         </div>
-        <div class="icon">
-            <img id="link-icon" src="https://img.icons8.com/ios-glyphs/60/null/linkedin-circled--v1.png"/>
-            <img id="link-icon" src="https://img.icons8.com/material-rounded/48/null/github.png"/>
-        </div>   
+        <!-- <div class="header-kbar">
+
+        </div> -->
+        <div class="content">
+            <router-link 
+                :class="{ active: activeIdx == 0}" 
+                :to="{name: 'HomePage'}" 
+                ref="blogLink">
+                Blog
+            </router-link>
+            <router-link 
+                :class="{ active: activeIdx == 1}" 
+                :to="{name: 'ProjectPage'}" 
+                ref="projectLink">
+                Project
+            </router-link>
+            <router-link 
+                :class="{ active: activeIdx == 2}"  
+                :to="{name: 'AboutPage'}" 
+                ref="aboutLink">
+                About
+            </router-link>
+            <el-switch />
+        </div>
     </div>
 </template>
   
 
 <script>
-
+import { ref, watch, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 export default{
     name: "HeaderView",
+    components: {
+
+    },
+    setup() {
+        const activeIdx = ref()
+        const route = useRoute()
+
+        onMounted(() => {
+            if (route.name == 'HomePage') {
+                activeIdx.value = 0
+            } else if (route.name == 'ProjectPage') {
+                activeIdx.value = 1
+            } else if (route.name == 'AboutPage') {
+                activeIdx.value = 2
+            }
+        })
+        
+        watch(() => route.name, () => {
+            if (route.name == 'HomePage') {
+                activeIdx.value = 0
+            } else if (route.name == 'ProjectPage') {
+                activeIdx.value = 1
+            } else if (route.name == 'AboutPage') {
+                activeIdx.value = 2
+            }
+        })
+        return {
+            activeIdx
+        }
+    }
 }
 </script>
 
 <style scoped>
 div.header-view {
+    height: var(--header-height);
     padding-left: 1rem;
     padding-right: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color:   rgb(255, 255, 255);
-    /* box-shadow: 0 1px 1px 0 rgba(150, 150, 150, 0.2), 0 3px 3px 0 rgba(150, 150, 150, 0.1); */
+    box-shadow: 0 1px 1px 0 var(--border-shadow-color), 0 2px 2px 0 var(--border-shadow-color);
     border-bottom: 1px solid var(--border-color);
 }
-
-div.icon {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-}
-
-#link-icon {
-    width: 30px;
-    height: 30px;
-}
-
-
-a {
-    /* padding: 0.5rem; */
-    text-decoration: none;
-}
-
 div.logo {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+
+div.content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 #logo {
@@ -62,5 +107,31 @@ div.logo {
     padding: 0.6rem;
 }
 
+a {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* a.nav-link:hover {
+    color: var(--font-hover-color);
+    transition-duration: 200ms;
+}
+
+a.nav-link:active {
+    color: var(--font-hover-color);
+    border-bottom: 3px solid var(--font-hover-color);
+}
+a.nav-link:focus {
+    color: var(--font-hover-color);
+    border-bottom: 3px solid var(--font-hover-color);
+} */
+.active {
+    color: var(--font-hover-color);
+    border-bottom: 3px solid var(--font-hover-color);
+}
 
 </style>

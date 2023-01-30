@@ -2,7 +2,7 @@
     <div class="blog-content-view">
         <div class="blog-content">
             <div class="blog-content-info">
-                <el-page-header :icon="null" @back="goback">
+                <el-page-header  @back="goback">
                     <template #content>
                         <span> 
                             <h1> {{ Title }} </h1> 

@@ -34,15 +34,15 @@ export default {
 </script>
 
 <style scoped>
-
-div.markdown-content-view{
-    position: relative;
-    min-width: 85%;
-}
 div.content-view{
     position: relative;
     display: flex;
-    
+    width: 100%;   
+}
+
+div.markdown-content-view{
+    position: relative;
+    min-width: 80%;
 }
 
 div.blog-outline {

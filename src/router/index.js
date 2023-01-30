@@ -1,26 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/IndexView.vue'
+import IndexView from '../views/IndexView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Index',
-    component: HomeView,
+    component: IndexView,
     children: [
       {
-        path: 'Home/:type?',
+        path: 'Blog/:type?',
         name: 'HomePage',
-        component: () => import("@/views/home/HomePageView"),
+        component: () => import("@/views/blog/home/HomePageView"),
       },
       {
-        path: 'Home/:type/:id',
+        path: 'Blog/:type/:id',
         name: 'BlogContent',
         component: () => import("@/views/blog/BlogContentView")
       },
       {
+        path: 'Tag',
+        name: 'TagPage',
+        component: () => import("@/views/blog/tag/TagView")
+      },
+      {
         path: 'About',
         name: 'AboutPage',
-        component: () => import("@/views/about/AboutView")
+        component: () => import("@/views/blog/about/AboutView")
+      },
+      {
+        path: 'Project',
+        name: 'ProjectPage',
+        component: () => import("@/views/project/ProjectView")
       },
     ]
   },

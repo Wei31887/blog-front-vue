@@ -127,15 +127,14 @@ div.prev-next-main {
 }
 
 div.blog-prev-next-hover:hover {
-    border: solid 1px rgb(156, 156, 156);
-    background-color: rgb(178, 207, 231);
+    border: solid 1px var(--border-color);
+    background-color: var(--hover-color);
     cursor: pointer;
     transition-duration: 200ms;
 }
 
 .active {
-    background-color: rgba(223, 223, 223, 0.7);
-    background-color: rgb(178, 207, 231);
+    background-color: var(--hover-color);
     color: white;
 }
 

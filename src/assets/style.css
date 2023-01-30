@@ -9,11 +9,22 @@ body {
     font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
     '微软雅黑', Arial, sans-serif;
     --background-color: white;
+    /* color */
     --aside-color: rgb(255, 255, 255);
     --div-color:  rgb(255, 255, 255);
-    --border-color: rgb(227, 227, 227);
-    --hover-color: rgb(206, 239, 255);
+    --border-color: rgb(210, 217, 221);
+    --hover-color: rgb(231, 241, 246);
     --footer-color:  rgb(230, 236, 237);
+    --border-shadow-color: rgba(207, 207, 207, 0.2);
     --font-color: rgb(53, 63, 94);
+    --font-hover-color: rgb(89, 107, 158);
     color: var(--font-color);   
+
+    /* div height */
+    --header-height: 4rem;
+
+    /* div width */
+    --sidebar-width: 20%;
+    --main-container-width: 80%;
 }
+
