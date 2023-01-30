@@ -1,14 +1,16 @@
 <template>
-        <el-breadcrumb separator=">">
-          <!-- <el-breadcrumb-item :to="{name: 'HomePage'}">
+    <div class="page-header-view">
+        <el-breadcrumb separator="/">
+            <!-- <el-breadcrumb-item :to="{name: 'HomePage'}">
             Home
-          </el-breadcrumb-item> -->
-          <template v-for="(item, index) in breadList" :key="index">
+            </el-breadcrumb-item> -->
+            <template v-for="(item, index) in breadList" :key="index">
             <el-breadcrumb-item v-if="item" :to="{name: 'HomePage', params: {type: item}}">
                 {{ item }}
             </el-breadcrumb-item>
-          </template>
+            </template>
         </el-breadcrumb>
+    </div>
   </template>
   
 
@@ -58,4 +60,11 @@ export default {
 .el-breadcrumb {
     padding: 1.5rem;
 }
+
+div.page-header-view {
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    margin: 0 1rem 0 1.5rem;
+}
+
 </style>

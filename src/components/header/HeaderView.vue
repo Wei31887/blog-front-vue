@@ -2,7 +2,9 @@
     <div class="header-view">
         <div class="logo">
             <router-link :to="{name: 'HomePage'}">
-                <img src="@/assets/logo.jpeg" alt="logo" id="logo">
+                <!-- <img src="@/assets/logo.jpeg" alt="logo" id="logo">
+                 -->
+                 <h3>WeiTim</h3>
             </router-link>
         </div>
         <div class="icon">

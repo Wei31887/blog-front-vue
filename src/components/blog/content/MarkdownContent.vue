@@ -3,7 +3,7 @@
         <div class="markdown-content-view" v-html="markHTML" ref="content"/>
     
         <div class="blog-outline">
-            <BlogOutline v-if="content" :element="content"></BlogOutline>
+            <BlogCatalog v-if="content" :element="content"></BlogCatalog>
         </div>
     </div>
 </template>
@@ -11,13 +11,13 @@
 <script>
 import { ref, computed } from 'vue'
 import { marked } from 'marked'
-import BlogOutline from '@/components/blog/BlogOutline';
+import BlogCatalog from '@/components/blog/content/BlogCatalog';
 // import { nextTick } from 'process';
 export default {
     name: 'MarkdownContent',
     props: ['source'],
     components: {
-        BlogOutline, 
+        BlogCatalog, 
     },
     setup(props) {
         const content = ref()
@@ -46,12 +46,13 @@ div.content-view{
 }
 
 div.blog-outline {
-    border-left: solid 1px rgb(211, 211, 211);
+    border-left: solid 1px var(--border-color);
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
     position: sticky;
     right: 0;
-    /* top: 0; */
+    height: 100%;
+    top: 30%;
 }
 </style>

@@ -8,14 +8,20 @@
         </aside>
       </el-col>
       <el-col :span="19"> 
+        <!-- header -->
         <main class="main-container">
-          <!-- header -->
-          <header class="header">
+          <header class="header" ref="header">
             <header-view></header-view>
           </header>
-          <!-- content -->
-          <div class="content">
-              <router-view></router-view>
+          <div class="main-content-container">
+            <!-- page header -->
+            <div class="page-header" ref="pageheader">
+              <Page-Header></Page-Header>
+            </div>
+            <!-- content -->
+            <div class="content">
+                <router-view></router-view>
+            </div>
           </div>
         </main>
         <!-- footer -->
@@ -29,16 +35,31 @@
 
 <script>
 // @ is an alias to /src
+import { ref, nextTick } from'vue'
 import AsideNav from '@/components/aside/AsideNav.vue'
 import HeaderView from '@/components/header/HeaderView.vue'
 import FooterView from '@/components/footer/FooterView.vue'
+import PageHeader from '@/components/page_header/PageHeader.vue'
 
 export default {
   name: 'HomeView',
   components: {
     AsideNav,
+    PageHeader,
     HeaderView,
     FooterView
+  },
+  setup() {
+    const pageheader = ref()
+    const header = ref()
+    nextTick(() => {
+      // let headerHeight = header.value
+      // console.log(headerHeight)
+    })
+    return {
+      pageheader,
+      header
+    }
   }
 }
 </script>
@@ -65,11 +86,20 @@ main.main-container {
 }
 
 header.header{
-  z-index: 4;
-  position: relative;
+  z-index: 5;
   position: sticky;
   top: 0px;
+}
 
+div.main-content-container{
+  position: relative;
+}
+
+div.page-header {
+  z-index: 4;
+  position: sticky;
+  top: 3rem;
+  width: 100%;
 }
 
 footer.footer {

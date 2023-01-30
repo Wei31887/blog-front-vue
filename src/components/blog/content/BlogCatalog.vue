@@ -1,9 +1,7 @@
 <template>
     <div class="blog-outline-view">
         <div class="blog-catalog-title">
-            <h3>
-                Catalog
-            </h3> 
+            <h2>Catalog</h2> 
         </div>
         <div class="blog-catalog-main">
             <ul class="catalog">
@@ -23,12 +21,13 @@
 <script>
 import { ref, onMounted } from 'vue'
 
+
 export default {
-    name: 'BlogContent',
+    name: 'BlogCatalog',
     props: ['element'],
     setup(props) {
-        // console.dir(props.element.children[0])
         const catalog = ref()
+            
         const makeCatalog = () => {
             const titleTag = ['H1', 'H2', 'H3']
             let titles = []
@@ -49,7 +48,6 @@ export default {
         
         onMounted(() => {
             catalog.value = makeCatalog()
-            console.log(catalog.value)
         })
 
         return {
@@ -75,19 +73,28 @@ li {
 }
 a {
     text-decoration: none;
+    color: rgb(110, 110, 110);
+}
+a:active {
+    text-decoration: none;
+    color: rgb(58, 58, 58);
+}
+a:focus {
+    text-decoration: none;
+    color: rgb(58, 58, 58);
 }
 
 .level1{
     padding: 0;
-    padding-top: 0.3rem;
+    padding-top: 0.5rem;
 }
 .level2{
     padding-left: 0.5rem;
-    padding-top: 0.3rem;
+    padding-top: 0.5rem;
 }
 .level3{
     padding-left: 1rem;
-    padding-top: 0.3rem;
+    padding-top: 0.5rem;
 }
 
 </style>

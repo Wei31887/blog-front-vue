@@ -1,35 +1,41 @@
 <template>
-    <Page-Header></Page-Header>
-
-    <el-timeline>
+    <!-- <el-timeline>
         <el-timeline-item 
             v-for="(item, index) in blogs" 
             :key="index"
             :timestamp="item.add_time" 
-            hollow="true"
             placement="top"
-        >
-        <div class="blog-list-view" @click="handleClick(item)">
-            <el-card class="blogs" shadow="always" :body-style="{ padding: '0px' }" >
-                <div class="pic">
-                </div>
-                <div class="blog-info">
-                    <div class="blog-title">
-                        <h1>{{ item.title }}</h1>
+        > -->
+        <div class="homepage-view">
+            <div class="blog-list-view" 
+                v-for="(item, index) in blogs" 
+                :key="index"
+                @click="handleClick(item)"
+            >
+                <el-card class="blogs" shadow="always" :body-style="{ padding: '0px' }" >
+                    <div class="pic">
                     </div>
-                    <div class="blog-info-detail">
-                        <span class="info-detail">
-                            <el-icon><View /></el-icon> Click: {{ item.click_hit }}
-                        </span>
-                        <span class="info-detail">
-                            <el-icon><CollectionTag /></el-icon> Tags: {{}}
-                        </span>
+                    <div class="blog-info">
+                        <div class="blog-title">
+                            <h1>{{ item.title }}</h1>
+                        </div>
+                        <div class="blog-info-detail">
+                            <span class="info-detail">
+                                <el-icon><View /></el-icon> Create time: {{ item.add_time }}
+                            </span>
+                            <span class="info-detail">
+                                <el-icon><View /></el-icon> Click: {{ item.click_hit }}
+                            </span>
+                            <span class="info-detail">
+                                <el-icon><CollectionTag /></el-icon> Tags: {{}}
+                            </span>
+                        </div>
                     </div>
-                </div>
-            </el-card>
+                </el-card>
+            </div>
         </div>
-        </el-timeline-item>
-    </el-timeline>
+        <!-- </el-timeline-item>
+    </el-timeline> -->
 
     <div class="page-nav">
         <el-pagination
@@ -48,11 +54,9 @@ import { ref, toRefs, reactive, onMounted, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus'
 import store from '@/store';
-import PageHeader from '@/components/page_header/PageHeader'
 
 export default {
     name: 'HomePage',   
-    components: {PageHeader},
     setup() {
         const router = useRouter()
         const route = useRoute()
@@ -138,8 +142,12 @@ export default {
 </script>
 
 <style scoped>
+
+div.homepage-view {
+    padding: 1rem;
+}
 div.blog-list-view{
-    /* padding-left: 2rem; */
+    padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;
 }
