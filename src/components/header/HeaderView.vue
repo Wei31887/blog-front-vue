@@ -47,7 +47,7 @@ export default{
 
     },
     setup() {
-        const activeIdx = ref()
+        const activeIdx = ref(0)
         const route = useRoute()
 
         onMounted(() => {

@@ -1,33 +1,26 @@
 <template>
     <div class="blog-outline-view">
-        <div class="blog-catalog-title">
-            <h2>Catalog</h2> 
-        </div>
-        <div class="blog-catalog-main">
-            <ul class="catalog">
-                <li v-for="(item, index) in catalog" :key="index" 
-                :class="'level'+item.level"
-                >
-                    <a :href="'#' + item.id" >
-                        {{item.title}}
-                        <!-- {{'level'+item.level}} -->
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <ul class="catalog">
+            <li v-for="(item, index) in catalog" :key="index" 
+            :class="'level'+item.level"
+            >
+                <a :href="'#' + item.id" >
+                    {{item.title}}
+                    <!-- {{'level'+item.level}} -->
+                </a>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { computed, } from 'vue'
 
 
 export default {
     name: 'BlogCatalog',
     props: ['element'],
     setup(props) {
-        const catalog = ref()
-            
         const makeCatalog = () => {
             const titleTag = ['H1', 'H2', 'H3']
             let titles = []
@@ -46,8 +39,8 @@ export default {
             return titles
         }
         
-        onMounted(() => {
-            catalog.value = makeCatalog()
+        const catalog = computed(() => {
+            return makeCatalog()
         })
 
         return {
@@ -60,20 +53,31 @@ export default {
 
 <style scoped>
 div.blog-outline-view {
+    border-left: solid 1px var(--border-color);
+    padding: 1rem;
+    position: sticky;
+    right: 0;
+    top: calc(var(--header-height) + 10px);
+
     font-size: smaller;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
+    overflow: scroll;
 }
 ul {
-    padding: 0;
+    padding: 0.5rem;
 }
 li {
     list-style: none;
+    text-align: left;
 }
 a {
     text-decoration: none;
     color: rgb(110, 110, 110);
+    font-size: medium;
+    font-weight: bold;
+    
 }
 a:active {
     text-decoration: none;

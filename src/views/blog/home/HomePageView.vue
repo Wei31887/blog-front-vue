@@ -14,7 +14,7 @@
                         </div>
                         <div class="blog-info-detail">
                             <span class="info-detail">
-                                <el-icon><View /></el-icon> Create time: {{ item.add_time }}
+                                <el-icon><Clock /></el-icon> {{ item.add_time }}
                             </span>
                             <span class="info-detail">
                                 <el-icon><View /></el-icon> Click: {{ item.click_hit }}
@@ -184,6 +184,7 @@ div.blog-info {
 div.blog-info-detail {
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 span.info-detail {

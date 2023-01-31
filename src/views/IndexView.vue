@@ -9,13 +9,15 @@
         <aside-nav></aside-nav>
       </aside>
       <main class="main-container"> 
-        <!-- page header -->
-        <div class="page-header" ref="pageheader">
-          <Page-Header></Page-Header>
-        </div>
-        <!-- content -->
-        <div class="content">
-            <router-view></router-view>
+        <div class="page-content">
+          <!-- page header -->
+          <div class="page-header" ref="pageheader">
+            <Page-Header></Page-Header>
+          </div>
+          <!-- content -->
+          <div class="content">
+              <router-view></router-view>
+          </div>
         </div>
         <!-- footer -->
         <footer class="footer">
@@ -82,9 +84,13 @@ header.header{
 }
 
 div.page-container{
-  width: 100%;
+  width: var(--main-container-width);
   display: flex;
   position: relative;
+}
+
+div.page-content {
+  padding: 2rem;
 }
 
 aside.aside {
@@ -104,14 +110,13 @@ main.main-container {
   flex-direction: column;
   justify-content: space-between;
   /* height: 100%; */
-  width: var(--main-container-width);
+  /* padding: 2rem; */
+  width: 100%;
   position: relative;
   background-color: var(--div-color);
 }
 
-div.content{
-  /* position: relative; */
-}
+
 
 div.page-header {
   z-index: 4;

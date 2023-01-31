@@ -15,7 +15,7 @@ const routes = [
       {
         path: 'Blog/:type/:id',
         name: 'BlogContent',
-        component: () => import("@/views/blog/BlogContentView")
+        component: () => import("@/views/blog/content/BlogContentView")
       },
       {
         path: 'Tag',

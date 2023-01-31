@@ -22,12 +22,7 @@
                         <el-scrollbar height="300px">
                             <li class="menu-link-home">
                                 <router-link class="menu-link" :to="{name: 'HomePage'}">
-                                    Home
-                                </router-link>
-                            </li>
-                            <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
-                                <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
-                                    {{ key }} <el-icon><ArrowRightBold /></el-icon>
+                                    Home<el-icon><House/></el-icon> 
                                 </router-link>
                             </li>
                             <li class="menu-link">
@@ -35,6 +30,12 @@
                                     Tags
                                 </router-link>
                             </li>
+                            <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
+                                <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
+                                    {{ key }} <el-icon><ArrowRightBold /></el-icon>
+                                </router-link>
+                            </li>
+                            
                         </el-scrollbar>
                     </ul>
             </div>
@@ -95,7 +96,6 @@ export default{
 
         // mounted
         onMounted(() => {
-            console.log(route.path)
             loadingBlogger()  
             loadingBlogType()
         })

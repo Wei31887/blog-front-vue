@@ -1,5 +1,6 @@
 <template>
     <div class="blog-content-view">
+        
         <div class="blog-content">
             <div class="blog-content-info">
                 <el-page-header  @back="goback">
@@ -22,8 +23,8 @@
                     </div>
                 </el-page-header>
             </div>
-            <div class="blog-content-context">
-                <MarkdownContent v-if="Content" :source="Content"></MarkdownContent>
+            <div class="blog-content-context" >
+                <MarkdownContent v-if="Content" :source="Content" ref="markedHTML"></MarkdownContent>
             </div>
             <div class="blog-prev-next">
                 <PrevNext v-if="PrevNextBlog" :prevnext="PrevNextBlog"> </PrevNext>
@@ -33,7 +34,9 @@
                 <Comment2 :comments="BlogCommentList"></Comment2>
             </div>
         </div>
-        
+        <div class="blog-outline">
+            <BlogCatalog v-if="markedHTML.markedContent" :element="markedHTML.markedContent"></BlogCatalog>
+        </div>
     </div>    
 </template>
 
@@ -42,18 +45,29 @@ import { BlogContent } from '@/api/blog'
 import { onMounted, reactive, toRefs, watch, ref, provide } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import MarkdownContent from '@/components/blog/content/MarkdownContent';
+import BlogCatalog from '@/components/blog/content/BlogCatalog';
 import PrevNext from '@/components/blog/content/PrevNext.vue';
 import Comment2 from '@/components/blog/content/Comment2.vue';
 
 export default {
     name: "BlogContentView",
     components: {
+        BlogCatalog,
         MarkdownContent,
         PrevNext,
         Comment2,
     },
 
     setup() {
+        const markedState = reactive({
+            markedHTML: '',
+            propHTML: '',
+        })
+
+        watch(()=> markedState.markedHTML.markedContent, () => {
+            markedState.propHTML = markedState.markedHTML.markedContent
+        })
+
         const router = useRouter()
         const route = useRoute()
 
@@ -122,6 +136,7 @@ export default {
         })
 
         return {
+            ...toRefs(markedState),
             ...toRefs(BlogState),
             ...toRefs(ControlState),
             loadingContent,
