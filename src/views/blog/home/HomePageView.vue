@@ -14,21 +14,19 @@
                         </div>
                         <div class="blog-info-detail">
                             <span class="info-detail">
-                                <el-icon><Clock /></el-icon> {{ item.add_time }}
+                                <el-icon><CollectionTag /></el-icon> Catagory: {{ item.type_name }}
                             </span>
                             <span class="info-detail">
                                 <el-icon><View /></el-icon> Click: {{ item.click_hit }}
                             </span>
                             <span class="info-detail">
-                                <el-icon><CollectionTag /></el-icon> Tags: {{}}
+                                <el-icon><Clock /></el-icon> {{ item.add_time }}
                             </span>
                         </div>
                     </div>
                 </el-card>
             </div>
         </div>
-        <!-- </el-timeline-item>
-    </el-timeline> -->
 
     <div class="page-nav">
         <el-pagination
@@ -70,7 +68,7 @@ export default {
 
         // watch
         watch(route, (to) => {
-            let toId = parseInt(store.getters.getBlogTypes[to.params.type])
+            let toId = parseInt(store.getters.getTypeIdMap[to.params.type])
             if (toId != blogList.typeId) {
                 blogList.typeId = toId
                 loadingBlog()   
@@ -114,10 +112,10 @@ export default {
 
         //mounted
         onMounted(() => {
-            if (route.params.type === undefined) {
+            if (route.params.type === 'home') {
                 blogList.typeId = 0
             } else {
-                blogList.typeId = parseInt(store.getters.getBlogTypes[route.params.type])
+                blogList.typeId = parseInt(store.getters.getTypeIdMap[route.params.type])
             }
             loadingBlog()
         })

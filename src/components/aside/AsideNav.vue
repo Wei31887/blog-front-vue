@@ -18,26 +18,25 @@
         </div>
         <div class="aisde-content-view">
             <div class="category">
-                    <ul class="menu-link">
-                        <el-scrollbar height="300px">
-                            <li class="menu-link-home">
-                                <router-link class="menu-link" :to="{name: 'HomePage'}">
-                                    Home<el-icon><House/></el-icon> 
-                                </router-link>
-                            </li>
-                            <li class="menu-link">
-                                <router-link class="menu-link" :to="{name: 'TagPage'}">
-                                    Tags
-                                </router-link>
-                            </li>
-                            <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
-                                <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
-                                    {{ key }} <el-icon><ArrowRightBold /></el-icon>
-                                </router-link>
-                            </li>
-                            
-                        </el-scrollbar>
-                    </ul>
+                <ul class="menu-link">
+                    <el-scrollbar height="300px">
+                        <li class="menu-link">
+                            <router-link class="menu-link" :to="{name: 'TagPage'}">
+                                Tags
+                            </router-link>
+                        </li>
+                        <li class="menu-link-home">
+                            <router-link class="menu-link" :to="{name: 'HomePage', params: {type: 'home'}}">
+                                Home<el-icon><House/></el-icon> 
+                            </router-link>
+                        </li>
+                        <li class="menu-link" tabindex="1" v-for="(value, key) in BlogTypeList" :key="value">
+                            <router-link class="menu-link" :to="{name: 'HomePage', params: {type: key}}" >
+                                {{ key }} <el-icon><ArrowRightBold /></el-icon>
+                            </router-link>
+                        </li>    
+                    </el-scrollbar>
+                </ul>
             </div>
         </div>
     </div>
@@ -83,7 +82,7 @@ export default{
         const loadingBlogType = () => {
             store.dispatch('loadingBlogType').then(res => {
                 if (res.data.code === 0) {
-                    BlogTypeList.value = store.getters.getBlogTypes
+                    BlogTypeList.value = store.getters.getTypeIdMap
                 } else {
                     ElNotification({
                         title: 'Error',

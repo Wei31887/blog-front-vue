@@ -1,7 +1,7 @@
 <template>
     <div class="header-view">
         <div class="logo">
-            <router-link :to="{name: 'HomePage'}">
+            <router-link :to="{name: 'HomePage', params: { type: 'home'}}">
                 <!-- <img src="@/assets/logo.jpeg" alt="logo" id="logo">
                  -->
                  <h3>
@@ -16,7 +16,7 @@
         <div class="content">
             <router-link 
                 :class="{ active: activeIdx == 0}" 
-                :to="{name: 'HomePage'}" 
+                :to="{name: 'HomePage', params: {type: 'home'}}" 
                 ref="blogLink">
                 Blog
             </router-link>
@@ -79,13 +79,15 @@ export default{
 <style scoped>
 div.header-view {
     height: var(--header-height);
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color:   rgb(255, 255, 255);
     box-shadow: 0 1px 1px 0 var(--border-shadow-color), 0 2px 2px 0 var(--border-shadow-color);
     border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: medium;
 }
 div.logo {
     display: flex;
@@ -100,6 +102,7 @@ div.content {
     align-items: center;
     height: 100%;
     width: 100%;
+    
 }
 
 #logo {

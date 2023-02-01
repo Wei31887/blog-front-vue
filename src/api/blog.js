@@ -30,3 +30,18 @@ export function BlogType() {
         method: 'post',
     })
 } 
+
+export function BlogTagList() {
+    return request({
+        url: '/tag/list',
+        method: 'post',
+    })
+} 
+
+export function BlogListWithTag(data) {
+    return request({
+        url: '/tag/blog',
+        method: 'post',
+        data
+    })
+} 

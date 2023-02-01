@@ -8,10 +8,10 @@ body {
     text-align: center;
     font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
     '微软雅黑', Arial, sans-serif;
-    --background-color: white;
+    --background-color: rgb(246, 246, 246);
     /* color */
     --aside-color: rgb(255, 255, 255);
-    --div-color:  rgb(255, 255, 255);
+    --div-color:  rgb(249, 249, 249);
     --border-color: rgb(210, 217, 221);
     --hover-color: rgb(231, 241, 246);
     --footer-color:  rgb(230, 236, 237);

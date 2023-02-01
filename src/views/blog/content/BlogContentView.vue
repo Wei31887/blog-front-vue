@@ -19,6 +19,10 @@
                                 <el-icon><View /></el-icon>
                                 Click: {{ Click }}
                             </li>
+                            <li>
+                                <el-icon><View /></el-icon>
+                                Tags: {{  }}
+                            </li>
                         </ul>
                     </div>
                 </el-page-header>
@@ -114,7 +118,7 @@ export default {
         }
 
         const goback = () => {
-            router.push({name: 'HomePage', params: {type: route.params.type}})
+            router.back()
         }
 
         // provide
@@ -152,6 +156,7 @@ div.blog-content-view {
     display: flex;
     justify-content: space-around;
     min-height: 100vh;
+    width: 100%;
     position: relative;
 }
 
@@ -164,6 +169,11 @@ div.blog-content {
     align-items: stretch;
     padding: 1.5rem;
     flex-grow: 1;
+    width: 85%;
+}
+
+div.blog-outline {
+    width: 15%;
 }
 
 div.blog-content-info-detail {

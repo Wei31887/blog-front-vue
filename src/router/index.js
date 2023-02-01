@@ -8,7 +8,7 @@ const routes = [
     component: IndexView,
     children: [
       {
-        path: 'Blog/:type?',
+        path: 'Blog/:type',
         name: 'HomePage',
         component: () => import("@/views/blog/home/HomePageView"),
       },
@@ -20,7 +20,14 @@ const routes = [
       {
         path: 'Tag',
         name: 'TagPage',
-        component: () => import("@/views/blog/tag/TagView")
+        component: () => import("@/views/blog/tag/TagView"),
+        // children: [
+        //   {
+        //     path: 'search',
+        //     name: 'TagSearch',
+        //     component: () => import("@/components/blog/tag/TagSearchView")
+        //   },
+        // ]
       },
       {
         path: 'About',
@@ -47,7 +54,10 @@ const router = createRouter({
 
 router.beforeEach( (to, from, next) => {
   if (to.name == 'Index') {
-    next({name: 'HomePage'})
+    next({path: 'Blog/home'})
+  }
+  if (to.path == 'Blog/Blog') {
+    next({path: 'Blog/home'})
   }
   next();
 });

@@ -57,7 +57,7 @@ export default {
                 router.push({
                     name: 'BlogContent', 
                     params: {
-                        type: Object.keys(store.getters.getBlogTypes).find(key => store.getters.getBlogTypes[key] === props.prevnext.prevBlog.typeId), 
+                        type: store.getters.getIdTypeMap[props.prevnext.prevBlog.typeId], 
                         id: props.prevnext.prevBlog.id
                     }
                 })
@@ -68,7 +68,7 @@ export default {
                 router.push({
                     name: 'BlogContent', 
                     params: {
-                        type: Object.keys(store.getters.getBlogTypes).find(key => store.getters.getBlogTypes[key] === props.prevnext.nextBlog.typeId), 
+                        type: store.getters.getIdTypeMap[props.prevnext.prevBlog.typeId], 
                         id: props.prevnext.nextBlog.id
                     }
                 })

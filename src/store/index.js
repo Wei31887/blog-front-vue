@@ -5,20 +5,27 @@ import { GetBlogger } from '@/api/blogger'
 
 export default createStore({
   state: {
-    blogTypeList: {},
+    TypeIdMap: {},
+    IdTypeMap: {},
     bloggerInfo: {},
   },
   getters: {
-    getBlogTypes(state) {
-      return state.blogTypeList
+    getTypeIdMap(state) {
+      return state.TypeIdMap
+    }, 
+    getIdTypeMap(state) {
+      return state.IdTypeMap
     }, 
     getBlogger(state) {
       return state.bloggerInfo
     }
   },
   mutations: {
-    SET_TYPE(state, blogTypes) {
-      state.blogTypeList = blogTypes
+    SET_TYPEID(state, TypeIds) {
+      state.TypeIdMap = TypeIds
+    },
+    SET_IDTYPE(state, IdType) {
+      state.IdTypeMap = IdType
     },
     SET_BLOGGER(state, blogger) {
       state.bloggerInfo = blogger
@@ -29,11 +36,14 @@ export default createStore({
       return new Promise((resolve, reject) => {
           BlogType().then(res => {
             if (res.data.code === 0) {
-              let temp = {}
+              let typeIdMap = {}
+              let IdTypeMap = {}
               res.data.data.forEach( item => {
-                temp[item.b_name] = item.type_id
+                typeIdMap[item.b_name] = item.type_id
+                IdTypeMap[item.type_id] = item.b_name
               });
-              commit('SET_TYPE', temp)
+              commit('SET_TYPEID', typeIdMap)
+              commit('SET_IDTYPE', IdTypeMap)
               resolve(res)
             } else {
               reject(res)
