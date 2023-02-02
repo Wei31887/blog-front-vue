@@ -5,24 +5,24 @@
             :key="index"
             @click="handleClick(item)"
         >
-            <el-card class="blogs" shadow="hover" :body-style="{ padding: '0px' }" >
+            <div class="blog-card">
                 <div class="blog-info">
-                    <div class="blog-title">
-                        <h1>{{ item.title }}</h1>
+                        <div class="blog-title">
+                            <h1>{{ item.title }}</h1>
+                        </div>
+                        <div class="blog-info-detail">
+                            <span class="info-detail">
+                                <el-icon><CollectionTag /></el-icon> Catagory: {{ item.type_name }}
+                            </span>
+                            <span class="info-detail">
+                                <el-icon><View /></el-icon> Click: {{ item.click_hit }}
+                            </span>
+                            <span class="info-detail">
+                                <el-icon><Clock /></el-icon> {{ item.add_time }}
+                            </span>
+                        </div>
                     </div>
-                    <div class="blog-info-detail">
-                        <span class="info-detail">
-                            <el-icon><CollectionTag /></el-icon> Catagory: {{ item.type_name }}
-                        </span>
-                        <span class="info-detail">
-                            <el-icon><View /></el-icon> Click: {{ item.click_hit }}
-                        </span>
-                        <span class="info-detail">
-                            <el-icon><Clock /></el-icon> {{ item.add_time }}
-                        </span>
-                    </div>
-                </div>
-            </el-card>
+            </div>
         </div>
     </div>
 
@@ -132,39 +132,5 @@ display: flex;
 justify-content: center;
 }
 
-.el-card.blogs {
-/* border-radius: 0px; */
-display: flex;
-flex-direction: column;
-}
-
-.el-card.blogs:hover {
-cursor: pointer;
-border: 1px solid var(--border-color);
-}
-
-div.blog-info {
-display: flex;
-flex-direction: column;
-/* justify-content: flex-end; */
-align-items: flex-start;
-font-size: smaller;
-padding: 1rem;
-}
-
-/* div.blog-title {
-} */
-
-div.blog-info-detail {
-display: flex;
-align-items: center;
-justify-content: space-around;
-}
-
-span.info-detail {
-padding: 0.5rem;
-display: flex;
-align-items: center;
-}
 
 </style>

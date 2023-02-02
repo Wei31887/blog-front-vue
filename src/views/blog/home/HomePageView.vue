@@ -5,26 +5,26 @@
                 :key="index"
                 @click="handleClick(item)"
             >
-                <el-card class="blogs" shadow="always" :body-style="{ padding: '0px' }" >
-                    <div class="pic">
-                    </div>
-                    <div class="blog-info">
-                        <div class="blog-title">
-                            <h1>{{ item.title }}</h1>
+                    <div class="blog-card">
+                        <div class="pic">
                         </div>
-                        <div class="blog-info-detail">
-                            <span class="info-detail">
-                                <el-icon><CollectionTag /></el-icon> Catagory: {{ item.type_name }}
-                            </span>
-                            <span class="info-detail">
-                                <el-icon><View /></el-icon> Click: {{ item.click_hit }}
-                            </span>
-                            <span class="info-detail">
-                                <el-icon><Clock /></el-icon> {{ item.add_time }}
-                            </span>
+                        <div class="blog-info">
+                            <div class="blog-title">
+                                <h1>{{ item.title }}</h1>
+                            </div>
+                            <div class="blog-info-detail">
+                                <span class="info-detail">
+                                    <el-icon><CollectionTag /></el-icon> Catagory: {{ item.type_name }}
+                                </span>
+                                <span class="info-detail">
+                                    <el-icon><View /></el-icon> Click: {{ item.click_hit }}
+                                </span>
+                                <span class="info-detail">
+                                    <el-icon><Clock /></el-icon> {{ item.add_time }}
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </el-card>
             </div>
         </div>
 
@@ -133,7 +133,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 div.homepage-view {
     padding: 1rem;
@@ -142,10 +142,7 @@ div.blog-list-view{
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;
-    /* min-width: 50%; */
-    /* display: flex;
-    flex-wrap: wrap; */
-    
+
 }
 
 div.page-nav{
@@ -156,37 +153,37 @@ div.page-nav{
     justify-content: center;
 }
 
-.el-card.blogs {
-    /* border-radius: 0px; */
+div.blog-card {
+    border-radius: 5px;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--border-color);
+    background-color: var(--blog-card-color);
 }
-
-.el-card.blogs:hover {
+div.blog-card:hover {
     cursor: pointer;
     border: 1px solid var(--border-color);
+    box-shadow: 0 0 2px 2px var(--border-shadow-color-1), 0 0 3px 5px var(--border-shadow-color-2);
+    transition: 300ms;
 }
 
 div.blog-info {
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-end; */
+    justify-content: center;
     align-items: flex-start;
-    font-size: smaller;
-    padding: 1rem;
 }
 
-/* div.blog-title {
-} */
+div.blog-title {
+}
 
 div.blog-info-detail {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
 }
 
 span.info-detail {
-    padding: 0.5rem;
+    padding: 0.5rem 1rem 0.5rem 0;
     display: flex;
     align-items: center;
 }
