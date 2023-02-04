@@ -81,10 +81,10 @@ div.header-view {
     height: var(--header-height);
     padding-left: 2rem;
     padding-right: 2rem;
+    margin: 0 2rem 0 2rem;
     display: flex;
     justify-content: space-between;
     background-color:   rgb(255, 255, 255);
-    box-shadow: 0 1px 1px 0 var(--border-shadow-color), 0 2px 2px 0 var(--border-shadow-color);
     border-bottom: 1px solid var(--border-color);
     font-weight: bold;
     font-size: medium;

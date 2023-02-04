@@ -160,11 +160,12 @@ div.blog-card {
     flex-direction: column;
     border: 1px solid var(--border-color);
     background-color: var(--blog-card-color);
+    box-shadow: 0 0 2px 2px var(--border-shadow-color-1), 0 0 4px 7px var(--border-shadow-color-2);
 }
 div.blog-card:hover {
     cursor: pointer;
     border: 1px solid var(--border-color);
-    box-shadow: 0 0 2px 2px var(--border-shadow-color-1), 0 0 3px 5px var(--border-shadow-color-2);
+    background-color: var(--blog-card-hover-color);
     transition: 300ms;
 }
 
@@ -173,9 +174,6 @@ div.blog-info {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-}
-
-div.blog-title {
 }
 
 div.blog-info-detail {

@@ -113,7 +113,7 @@ main.main-container {
   /* padding: 2rem; */
   width: 100%;
   position: relative;
-  background-color: var(--div-color);
+  background-color: var(--background-color);
 }
 
 

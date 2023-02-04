@@ -112,6 +112,7 @@ export default{
 
 div.aside-view {
     /* padding: 1rem; */
+    margin: 2rem 0 0 0 ;
     background-color: var(--aside-color);
     /* /* box-shadow: 2px 0px 2px 0px rgba(150, 150, 150, 0.2), 2px 0px 2px 0px rgba(150, 150, 150, 0.1); */
     height: 100%;
