@@ -18,12 +18,11 @@
 
 ## 技術
 
-1. [Vue3](https://github.com/gin-gonic/gin) Gin 框架實現 RESTful API 及 middleware 處理
-2. [jwt-go](https://github.com/dgrijalva/jwt-go) 實現 JWT 認證
-3. [golang-migrate/migrate](https://github.com/golang-migrate/migrate) 實現資料庫遷移
-4. [gorm.io/gorm](https://gorm.io) 實現存取資料庫
-5. [viper](https://github.com/spf13/viper) 實現 config 初始化
-6. [uber-go/zap](https://github.com/uber-go/zap) zap實現日誌log管理
+1. [Vue](https://github.com/vuejs/vue) 採用 vue3 框架實現
+2. [vue-router](https://github.com/vuejs/vue-router)
+3. [vuex](https://github.com/vuejs/vuex) 
+4. [axios](https://github.com/axios/axios) 管理http requests
+2. [element-plus](https://github.com/element-plus/element-plus) 
 
 ## 環境
 
