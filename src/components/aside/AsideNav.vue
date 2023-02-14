@@ -16,7 +16,11 @@
                 <img id="link-icon" src="https://img.icons8.com/material-rounded/48/null/github.png"/>
             </div>
         </div>
-        <div class="aisde-content-view">
+        <div class="aside-content-view">
+            <div class="choose-option">
+                <h3>分類</h3>
+                <h3>目錄</h3>
+            </div>
             <div class="category">
                 <ul class="menu-link">
                     <el-scrollbar height="300px">
@@ -112,11 +116,11 @@ export default{
 
 div.aside-view {
     /* padding: 1rem; */
-    margin: 2rem 0 0 0 ;
-    background-color: var(--aside-color);
+    margin: 1.5rem 0 0 1.5rem ;
+    /* background-color: var(--aside-color); */
     /* /* box-shadow: 2px 0px 2px 0px rgba(150, 150, 150, 0.2), 2px 0px 2px 0px rgba(150, 150, 150, 0.1); */
     height: 100%;
-    border-right: 1px solid var(--border-color);
+    
 }
 
 #link-icon {
@@ -124,20 +128,39 @@ div.aside-view {
     height: 30px;
 }
 div.aside-header {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding: 1rem;
+    /* margin-left: 1rem;
+    margin-right: 1rem; */
+    margin-bottom: 1rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border-color);
+    /* border-bottom: 1px solid var(--border-color);
+    border: 1px solid var(--border-color); */
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(26,31,28,.08);
+    
 }
 div.aside-content-view {
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     justify-content: center;
+    width: 100%;
+    /* border: 1px solid var(--border-color); */
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(26,31,28,.08);
+}
+div.choose-option {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    margin: 0 1rem 0 1rem;
 }
 
 ul.menu-link {

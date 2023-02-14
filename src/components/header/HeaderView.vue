@@ -81,11 +81,11 @@ div.header-view {
     height: var(--header-height);
     padding-left: 2rem;
     padding-right: 2rem;
-    margin: 0 2rem 0 2rem;
     display: flex;
     justify-content: space-between;
-    background-color:   rgb(255, 255, 255);
+    background-color:   rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 6px rgba(26,31,28,.08);
     font-weight: bold;
     font-size: medium;
 }
@@ -119,19 +119,6 @@ a {
     align-items: center;
 }
 
-/* a.nav-link:hover {
-    color: var(--font-hover-color);
-    transition-duration: 200ms;
-}
-
-a.nav-link:active {
-    color: var(--font-hover-color);
-    border-bottom: 3px solid var(--font-hover-color);
-}
-a.nav-link:focus {
-    color: var(--font-hover-color);
-    border-bottom: 3px solid var(--font-hover-color);
-} */
 .active {
     color: var(--font-hover-color);
     border-bottom: 3px solid var(--font-hover-color);

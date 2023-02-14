@@ -12,12 +12,15 @@
                             <div class="blog-title">
                                 <h1>{{ item.title }}</h1>
                             </div>
+                            <div class="blog-summary">
+                                blablabla
+                            </div>
                             <div class="blog-info-detail">
                                 <span class="info-detail">
-                                    <el-icon><CollectionTag /></el-icon> Catagory: {{ item.type_name }}
+                                    <el-icon><CollectionTag /></el-icon> 文章分類： {{ item.type_name }}
                                 </span>
                                 <span class="info-detail">
-                                    <el-icon><View /></el-icon> Click: {{ item.click_hit }}
+                                    <el-icon><View /></el-icon> 閱覽次數： {{ item.click_hit }}
                                 </span>
                                 <span class="info-detail">
                                     <el-icon><Clock /></el-icon> {{ item.add_time }}
@@ -53,7 +56,7 @@ export default {
         const route = useRoute()
         const total = ref(50)
         const PageState = reactive({
-            pageSize: 10,
+            pageSize: 8,
             currentPage: 1,
         })
 
@@ -136,7 +139,7 @@ export default {
 <style>
 
 div.homepage-view {
-    padding: 1rem;
+    /* padding: 1rem; */
 }
 div.blog-list-view{
     padding-left: 2rem;
@@ -145,8 +148,12 @@ div.blog-list-view{
 
 }
 
+div.blog-summary {
+    color: rgb(139, 139, 152);
+}
+
 div.page-nav{
-    padding: 2%;
+    padding: 1rem;
     position: relative;
     bottom: 0;
     display: flex;
@@ -154,19 +161,22 @@ div.page-nav{
 }
 
 div.blog-card {
-    border-radius: 5px;
-    padding: 1rem;
+    border-radius: 6px;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border-color);
+    /* border: 1px solid var(--border-color); */
     background-color: var(--blog-card-color);
-    box-shadow: 0 0 2px 2px var(--border-shadow-color-1), 0 0 4px 7px var(--border-shadow-color-2);
+    box-shadow: 0 3px 6px rgba(29, 30, 29, 0.08);
+   
 }
 div.blog-card:hover {
     cursor: pointer;
-    border: 1px solid var(--border-color);
-    background-color: var(--blog-card-hover-color);
-    transition: 300ms;
+    /* box-shadow: 0 0 1px 1px var(--border-shadow-color-1), 0 0 4px 6px var(--border-shadow-color-2); */
+    transition: 150ms;
+    transform: translate3d(-1px,-3px,-2px);
+    /* box-shadow: 0 5px 15px 0 rgba(0,0,0,0.08); */
+    box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.08);
 }
 
 div.blog-info {
@@ -178,10 +188,12 @@ div.blog-info {
 
 div.blog-info-detail {
     display: flex;
+    width: 100%;
+    padding: 1rem 0 0rem 0;
 }
 
 span.info-detail {
-    padding: 0.5rem 1rem 0.5rem 0;
+    padding: 0.5rem 1rem 0rem 0;
     display: flex;
     align-items: center;
 }

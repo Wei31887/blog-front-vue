@@ -19,12 +19,12 @@
               <router-view></router-view>
           </div>
         </div>
-        <!-- footer -->
-        <footer class="footer">
-          <footer-view></footer-view>
-        </footer>
       </main>
     </div>
+    <!-- footer -->
+    <footer class="footer">
+      <footer-view></footer-view>
+    </footer>
   </div>
 </template>
 
@@ -67,6 +67,7 @@ div.container {
 
 header.header{
   z-index: 5;
+  /* padding-bottom: 1rem; */
 }
 
 @media screen and (min-width: 960px) {
@@ -79,14 +80,17 @@ header.header{
     transform: translate(0);
   }
   .page-container.has-sidebar {
-    padding-left: calc(var(--sidebar-width));
+    /* padding-left: calc(var(--sidebar-width)); */
+    width: 100%;
   } 
 }
 
 div.page-container{
   width: var(--main-container-width);
   display: flex;
+  /* justify-content: space-around; */
   position: relative;
+  overflow: scroll;
 }
 
 div.page-content {
@@ -95,11 +99,13 @@ div.page-content {
 
 aside.aside {
   z-index: 2;
-  height: 100vh;
+  height: 100%;
   width: var(--sidebar-width);
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  /* position: fixed; */
+  top: 0;
+  position: relative;
+  /* left: 0; */
+  /* bottom: 0; */
 }
 
 

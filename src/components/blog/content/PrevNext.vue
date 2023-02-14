@@ -57,7 +57,7 @@ export default {
                 router.push({
                     name: 'BlogContent', 
                     params: {
-                        type: store.getters.getIdTypeMap[props.prevnext.prevBlog.typeId], 
+                        type: store.getters.getIdTypeMap[props.prevnext.prevBlog.type_id], 
                         id: props.prevnext.prevBlog.id
                     }
                 })
@@ -68,7 +68,7 @@ export default {
                 router.push({
                     name: 'BlogContent', 
                     params: {
-                        type: store.getters.getIdTypeMap[props.prevnext.prevBlog.typeId], 
+                        type: store.getters.getIdTypeMap[props.prevnext.prevBlog.type_id], 
                         id: props.prevnext.nextBlog.id
                     }
                 })

@@ -8,15 +8,15 @@ body {
     text-align: center;
     font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
     '微软雅黑', Arial, sans-serif;
-    --background-color: rgb(255, 255, 255);
+    --background-color: #f8f8f8;
     /* color */
-    --aside-color: rgb(255, 255, 255);
+    --aside-color: rgb(248, 248, 248);
     --div-color:  rgb(255, 255, 255);
     --border-color: rgb(210, 217, 221);
     --blog-card-color: white;
     --blog-card-hover-color: rgb(245, 248, 250);
     --hover-color: rgb(231, 241, 246);
-    --footer-color:  rgb(230, 236, 237);
+    --footer-color:  rgb(144, 162, 165);
     --border-shadow-color-1: rgba(152, 152, 152, 0.2);
     --border-shadow-color-2: rgba(219, 219, 219, 0.2);
     --font-color: rgb(53, 63, 94);
@@ -27,7 +27,7 @@ body {
     --header-height: 4rem;
 
     /* div width */
-    --sidebar-width: 20%;
-    --main-container-width: 80%;
+    --sidebar-width: 35%;
+    --main-container-width: calc(100% - var(--sidebar-width));
 }
 
