@@ -90,7 +90,7 @@ div.page-container{
   display: flex;
   /* justify-content: space-around; */
   position: relative;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 div.page-content {

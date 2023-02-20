@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <el-sub-menu :index="navIndex" class="subItem">
         <template #title>
             <span> {{ item.b_name }} </span>
@@ -15,4 +15,4 @@ export default {
   
 <style scoped>
 </style>
-  
+   -->
