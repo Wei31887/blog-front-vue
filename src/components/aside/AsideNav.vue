@@ -69,7 +69,7 @@ export default{
         // methods
         const loadingBlogger = () => {
             store.dispatch('loadingBlogger').then(res => {
-                if (res.data.code === 0) {
+                if (res.status == 200) {
                     blogger.profileImage = BASE_API + store.getters.getBlogger.img
                     blogger.sign = store.getters.getBlogger.sign
                     blogger.bloggerName = store.getters.getBlogger.nickname + "'s blog" 
@@ -85,7 +85,7 @@ export default{
 
         const loadingBlogType = () => {
             store.dispatch('loadingBlogType').then(res => {
-                if (res.data.code === 0) {
+                if (res.status == 200) {
                     BlogTypeList.value = store.getters.getTypeIdMap
                 } else {
                     ElNotification({

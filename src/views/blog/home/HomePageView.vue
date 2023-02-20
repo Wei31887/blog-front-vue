@@ -85,7 +85,7 @@ export default {
                 size: PageState.pageSize,
                 type_id: blogList.typeId
             }).then( res => {
-                if (res.data.code === 0) {
+                if (res.status == 200) {
                     blogList.blogs = res.data.data
                     total.value = res.data.count
                 } else {
@@ -138,9 +138,6 @@ export default {
 
 <style>
 
-div.homepage-view {
-    /* padding: 1rem; */
-}
 div.blog-list-view{
     padding-left: 2rem;
     padding-right: 2rem;

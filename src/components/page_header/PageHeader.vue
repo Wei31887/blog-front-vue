@@ -60,8 +60,9 @@ export default {
 
 div.page-header-view {
     /* border-bottom: 1px solid var(--border-color); */
-    /* background-color: var(--background-color); */
-    margin: 0 1rem 0 1.5rem;
+    background-color: var(--page-header-color);
+    margin: 1rem;
+    border-radius: 6px;
 }
 
 </style>

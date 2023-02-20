@@ -35,7 +35,7 @@ export default createStore({
     loadingBlogType({commit}) {
       return new Promise((resolve, reject) => {
           BlogType().then(res => {
-            if (res.data.code === 0) {
+            if (res.status == 200) {
               let typeIdMap = {}
               let IdTypeMap = {}
               res.data.data.forEach( item => {
@@ -56,7 +56,7 @@ export default createStore({
     loadingBlogger({commit}) {
       return new Promise((resolve, reject) => {
         GetBlogger().then(res => {
-            if (res.data.code === 0) {
+            if (res.status == 200) {
               commit('SET_BLOGGER', res.data.data)
               resolve(res)
             } else {

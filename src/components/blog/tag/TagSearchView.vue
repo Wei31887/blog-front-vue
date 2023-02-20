@@ -69,7 +69,7 @@ setup() {
                 page: PageState.currentPage,
                 size: PageState.pageSize,
             }).then( res => {
-                if (res.data.code === 0) {
+                if (res.status == 200) {
                     blogList.blogs = res.data.data
                     total.value = res.data.count
                 } else {

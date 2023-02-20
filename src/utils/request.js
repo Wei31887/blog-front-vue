@@ -21,12 +21,11 @@ service.interceptors.request.use(
 // axios 攔截器： response前狀態
 service.interceptors.response.use(
     response => {
-        let res = response.data
-        if (res.code == 0) {
+        if (response.status == 200) {
             return response
         } else {
             ElMessage({
-                message: res.msg,
+                message: response.data.msg,
                 type: 'error',
             })
             return Promise.reject(response)

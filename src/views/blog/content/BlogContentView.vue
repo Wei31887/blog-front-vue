@@ -99,7 +99,7 @@ export default {
             BlogContent({
                 id: blog_id,
             }).then(res => {
-                if (res.data.code === 0) {
+                if (res.status == 200) {
                     let temp = res.data.data['blog']
                     BlogState.Title = temp.title
                     BlogState.Id = temp.id

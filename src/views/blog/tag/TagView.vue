@@ -47,7 +47,7 @@ export default {
         // methods
         function loadingTag() {
             BlogTagList().then(res => {
-                if (res.data.code === 0) {
+                if (res.status == 200) {
                     AllTags.value = res.data.data
                 } else {
                     ElNotification({

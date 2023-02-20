@@ -96,7 +96,7 @@ export default {
                 nick_name: state.commentForm.nickName,
                 content: state.commentForm.comment,
             }).then(res => {
-                if (res.data.code === 0) {
+                if (res.status == 200) {
                     ElNotification({
                         title: 'Success',
                         type: 'success',
