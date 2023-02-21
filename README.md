@@ -12,6 +12,7 @@
 - 使用 Gin 框架，提供 middleware 功能，如 admin用戶認證、日誌、跨域等
 - 基於 JWT 認證的 Admin 用戶登入功能
 - 基於 GORM 存取資料庫
+- TODO: 文章目錄
 - TODO: Dockerfile
 - TODO: API unit test
 - TODO: 系統上線
