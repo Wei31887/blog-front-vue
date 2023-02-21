@@ -39,6 +39,7 @@ export default createStore({
               let typeIdMap = {}
               let IdTypeMap = {}
               res.data.data.forEach( item => {
+                
                 typeIdMap[item.b_name] = item.type_id
                 IdTypeMap[item.type_id] = item.b_name
               });

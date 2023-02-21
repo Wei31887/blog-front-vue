@@ -38,5 +38,6 @@ div.content-view{
 div.markdown-content-view{
     position: relative;
     min-width: 80%;
+    font-size: medium;
 }
 </style>

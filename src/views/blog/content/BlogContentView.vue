@@ -5,22 +5,33 @@
         <el-page-header @back="goback">
           <template #content>
             <span>
-              <h1>{{ Title }}</h1>
+              <h1>{{ blog.title }}</h1>
             </span>
           </template>
           <div class="blog-content-info-detail">
             <ul>
               <li>
                 <el-icon><View /></el-icon>
-                Create time: {{ AddTime }}
+
+                發布時間: {{ blog.add_time }}
               </li>
               <li>
                 <el-icon><View /></el-icon>
-                Click: {{ Click }}
+                點閱次數: {{ blog.click_hit }}
               </li>
               <li>
                 <el-icon><View /></el-icon>
-                Tags: {{}}
+                Tags:
+                <el-tag
+                  v-for="item in Tags"
+                  :key="item.tag_name"
+                  class="mx-1"
+                  effect="dark"
+                  size="large"
+                  style="margin: 0 0.5rem"
+                >
+                  {{ item.tag_name }}
+                </el-tag>
               </li>
             </ul>
           </div>
@@ -28,8 +39,8 @@
       </div>
       <div class="blog-content-context">
         <MarkdownContent
-          v-if="Content"
-          :source="Content"
+          v-if="blog.content"
+          :source="blog.content"
           ref="markedHTML"
         ></MarkdownContent>
       </div>
@@ -41,7 +52,6 @@
         <Comment2 :comments="BlogCommentList"></Comment2>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -62,20 +72,13 @@ export default {
   },
 
   setup() {
+    const router = useRouter();
+    const route = useRoute();
+
     const markedState = reactive({
       markedHTML: "",
       propHTML: "",
-    });
-
-    watch(
-      () => markedState.markedHTML.markedContent,
-      () => {
-        markedState.propHTML = markedState.markedHTML.markedContent;
-      }
-    );
-
-    const router = useRouter();
-    const route = useRoute();
+    }); 
 
     const ControlState = reactive({
       PrevNextBlog: {
@@ -85,13 +88,8 @@ export default {
     });
 
     const BlogState = reactive({
-      Title: "",
-      Id: 0,
-      Content: "",
-      AddTime: "",
-      UpdateTime: "",
-      CommentList: {},
-      Click: 0,
+      blog: {},
+      Tags: [],
     });
 
     const BlogCommentList = ref();
@@ -103,14 +101,8 @@ export default {
       })
         .then((res) => {
           if (res.status == 200) {
-            let temp = res.data.data["blog"];
-            BlogState.Title = temp.title;
-            BlogState.Id = temp.id;
-            BlogState.Content = temp.content;
-            BlogState.AddTime = temp.add_time;
-            BlogState.UpdateTime = temp.update_time;
-            BlogState.Click = temp.click_hit;
-
+            BlogState.blog = res.data.data["blog"];
+            BlogState.Tags = res.data.data["tags"];
             BlogCommentList.value = res.data.data["comments"];
             ControlState.PrevNextBlog.nextBlog = res.data.data["next"];
             ControlState.PrevNextBlog.prevBlog = res.data.data["prev"];
@@ -136,6 +128,13 @@ export default {
         loadingContent(BlogState.Id);
       }
     });
+
+    watch(
+      () => markedState.markedHTML.markedContent,
+      () => {
+        markedState.propHTML = markedState.markedHTML.markedContent;
+      }
+    );
 
     // mounted
     onMounted(() => {
@@ -198,11 +197,12 @@ div.blog-comment {
 
 ul {
   list-style: none;
-  padding: 0;
+  /* padding: 1rem; */
 }
 
 li {
-  font-size: small;
-  color: rgb(107, 107, 107);
+  font-size: medium;
+  color: rgb(89, 89, 89);
+  padding: 0.5rem 0 0.5rem 0;
 }
 </style>

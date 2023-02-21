@@ -8,35 +8,28 @@ const routes = [
     component: IndexView,
     children: [
       {
-        path: "Blog/:type",
+        path: "blog/:type",
         name: "HomePage",
         component: () => import("@/views/blog/home/HomePageView"),
         props: true,
       },
       {
-        path: "Blog/:type/:id",
+        path: "blog/:type/:id",
         name: "BlogContent",
         component: () => import("@/views/blog/content/BlogContentView"),
       },
       {
-        path: "Tag",
+        path: "tag",
         name: "TagPage",
         component: () => import("@/views/tag/TagView"),
-        // children: [
-        //   {
-        //     path: 'search',
-        //     name: 'TagSearch',
-        //     component: () => import("@/components/blog/tag/TagSearchView")
-        //   },
-        // ]
       },
       {
-        path: "About",
+        path: "about",
         name: "AboutPage",
         component: () => import("@/views/about/AboutView"),
       },
       {
-        path: "Project",
+        path: "project",
         name: "ProjectPage",
         component: () => import("@/views/project/ProjectView"),
       },
@@ -55,10 +48,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.name == "Index") {
-    next({ path: "Blog/home" });
+    next({ path: "blog/home" });
   }
-  if (to.path == "Blog/Blog") {
-    next({ path: "Blog/home" });
+  if (to.path == "blog/blog") {
+    next({ path: "blog/home" });
   }
   next();
 });

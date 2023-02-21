@@ -22,19 +22,13 @@
     </div>
     <div class="aside-content-view">
       <div class="choose-option">
-        <h3>分類</h3>
-        <h3>目錄</h3>
+        <h3 class="choose-option-btn" @click="handleClickType">分類</h3>
+        <h3 class="choose-option-btn" @click="handleClickCatalog">目錄</h3>
       </div>
 
       <div class="aside-main-content">
-        <AsideType
-          v-if="chooseType"
-          :typelist="BlogTypeList"
-        ></AsideType>
-        <BlogCatalog
-            v-else>
-
-        </BlogCatalog>
+        <AsideType v-if="chooseType" :typelist="BlogTypeList"></AsideType>
+        <!-- <BlogCatalog v-else :element="markedHTML.markedContent"> </BlogCatalog> -->
       </div>
     </div>
   </div>
@@ -46,18 +40,18 @@ import { ElNotification } from "element-plus";
 import { onMounted, reactive, toRefs, ref } from "vue";
 import { useRoute } from "vue-router";
 import AsideType from "@/components/aside/type/AsideType.vue";
-import BlogCatalog from "@/components/aside/catelog/BlogCatalog.vue";
+// import BlogCatalog from "@/components/aside/catelog/BlogCatalog.vue";
 import store from "@/store";
 
 export default {
   name: "AsideNav",
   components: {
     AsideType,
-    BlogCatalog,
+    // BlogCatalog,
   },
   setup() {
     const route = useRoute();
-    const chooseType = ref(true)
+    const chooseType = ref(true);
     const BlogTypeList = ref();
     const blogger = reactive({
       profileImage: "",
@@ -67,7 +61,7 @@ export default {
     });
 
     // methods
-    const loadingBlogger = () => {
+    function loadingBlogger() {
       store
         .dispatch("loadingBlogger")
         .then((res) => {
@@ -86,9 +80,9 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    };
+    }
 
-    const loadingBlogType = () => {
+    function loadingBlogType() {
       store
         .dispatch("loadingBlogType")
         .then((res) => {
@@ -105,7 +99,18 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    };
+    }
+
+    function handleClickType() {
+        if (!chooseType.value) {
+            chooseType.value = !chooseType.value
+        }
+    }
+    function handleClickCatalog() {
+        if (chooseType.value) {
+            chooseType.value = !chooseType.value
+        }
+    }
 
     // mounted
     onMounted(() => {
@@ -114,10 +119,12 @@ export default {
     });
 
     return {
-        chooseType,
+      chooseType,
       ...toRefs(blogger),
       BlogTypeList,
       route,
+      handleClickType,
+      handleClickCatalog,
     };
   },
 };
@@ -170,4 +177,11 @@ div.choose-option {
   border-bottom: 1px solid var(--border-color);
   margin: 0 1rem 0 1rem;
 }
+
+h3.choose-option-btn:hover {
+    cursor: pointer;
+    color: var(--hover-color);
+    transition-duration: 100ms;
+}
+
 </style>
